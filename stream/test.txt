@@ -1,0 +1,6 @@
+Class: stream.Readable
+Event: 'close'
+Event: 'data'
+Event: 'end'
+Event: 'error'
+Event: 'readable'

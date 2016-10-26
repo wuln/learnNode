@@ -1,4 +1,7 @@
 sample.png
+data.txt
+buf.txt
+pipe.txt
 # Logs
 logs
 *.log
