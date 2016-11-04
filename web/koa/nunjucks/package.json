@@ -1,0 +1,22 @@
+{
+    "name": "nunjucks",
+    "version": "1.0.0",
+    "description": "nunjucks template engine",
+    "main": "app.js",
+    "scripts": {
+        "start": "node --use_strict app.js"
+    },
+    "keywords": [
+        "nunjucks",
+        "template"
+    ],
+    "author": "wuln",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wuln/learnNode.git"
+    },
+    "dependencies": {        
+        "nunjucks": "2.4.2"
+    }
+}
