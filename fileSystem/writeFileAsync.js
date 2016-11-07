@@ -6,7 +6,7 @@ console.log('>>>Begin>>>');
 
 var data = 'write file async';
 
-fs.writeFile('write.txt', data, function(err, data){
+fs.writeFile('write.txt', data, function(err){
     if (err) throw err;
     console.log('ok');
 });
