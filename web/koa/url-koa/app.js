@@ -1,7 +1,12 @@
-// 导入koa，和koa 1.x不同，在koa2中，我们导入的是一个class，因此用大写的Koa表示:
+
 const Koa = require('koa');
+
+// 解析原始request请求，然后把解析后的参数绑定到ctx.request.body中的middleware
 const bodyParser = require('koa-bodyparser');
+
+// 负责处理URL映射的middleware，require('koa-router')返回的是函数
 const router = require('koa-router')();
+
 // 创建一个Koa对象表示web app本身
 const app = new Koa();
 
@@ -14,6 +19,7 @@ app.use(async(ctx, next) => {
 // koa-bodyparser必须在router之前被注册到app对象上。
 app.use(bodyParser());
 
+// 注册get请求：router.get('/path', async fn)
 router.get('/hello/:name', async(ctx, next) => {
     var name = ctx.params.name;
     ctx.response.body = `<h1>Hello, ${name}!</h1>`;
@@ -28,6 +34,7 @@ router.get('/', async(ctx, next) => {
         </form>`;
 });
 
+// router.post('/path', async fn)
 router.post('/signin', async (ctx, next) => {
     var name = ctx.request.body.name || '',
         password = ctx.request.body.password || '';
@@ -40,7 +47,7 @@ router.post('/signin', async (ctx, next) => {
     }
 });
 
-// router middleware
+// add router middleware
 app.use(router.routes());
 
 app.listen(3000);

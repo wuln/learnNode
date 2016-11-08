@@ -14,7 +14,7 @@
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/wuln/learnNode.git"
+        "url": "https://github.com/wuln/learnNode/tree/master/web/koa/url-koa"
     },
     "dependencies": {
         "babel-core": "6.13.2",
