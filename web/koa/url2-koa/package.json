@@ -1,7 +1,7 @@
 {
-    "name": "url-koa",
+    "name": "url2-koa",
     "version": "1.0.0",
-    "description": "koa2 example with url route",
+    "description": "reconfiguration：koa2 example with url route",
     "main": "start.js",
     "scripts": {
         "start": "node --use_strict start.js"
@@ -14,7 +14,7 @@
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/wuln/learnNode.git"
+        "url": "https://github.com/wuln/learnNode/tree/master/web/koa/url2-koa"
     },
     "dependencies": {
         "babel-core": "6.13.2",
