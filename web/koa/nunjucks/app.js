@@ -7,8 +7,9 @@ function createEnv(path, opts) {
         watch = opts.watch || false,
         throwOnUndefined = opts.throwOnUndefined || false,
         env = new nunjucks.Environment(
+            // 创建一个文件系统加载器，从views目录读取模板
             new nunjucks.FileSystemLoader(path, {
-                noCache: noCache,
+                noCache: noCache,  // noCache: false使用缓存
                 watch: watch,
             }), {
                 autoescape: autoescape,
@@ -21,7 +22,7 @@ function createEnv(path, opts) {
     }
     return env;
 }
-
+// 创建Nunjucks模板引擎对象
 var env = createEnv('views', {
     watch: true,
     filters: {
@@ -30,7 +31,9 @@ var env = createEnv('views', {
         }
     }
 });
-
+// render(view, model)渲染模板
+// view是模板的名称（视图）,model是数据
+// 返回字符串
 var s = env.render('hello.html', {
     name: '<Nunjucks>',
     fruits: ['Apple', 'Pear', 'Banana'],
@@ -39,7 +42,9 @@ var s = env.render('hello.html', {
 
 console.log(s);
 
+// 模板的继承:基本网页框架base.html，子模板extend.html
+// 渲染子模板
 console.log(env.render('extend.html', {
-    header: 'Hello',
-    body: 'bla bla bla...'
+    header: 'Nunjucks',
+    body: 'A rich and powerful templating language for JavaScript.'
 }));
