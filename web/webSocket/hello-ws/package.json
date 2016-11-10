@@ -1,0 +1,22 @@
+{
+    "name": "hello-ws",
+    "version": "1.0.0",
+    "description": "webSocket eg1: say hello",
+    "main": "app.js",
+    "scripts": {
+        "start": "node --use_strict app.js"
+    },
+    "keywords": [
+        "ws",
+        "webSocket"      
+    ],
+    "author": "wuln",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wuln/learnNode/tree/master/web/webSocket/hello-ws"                
+    },
+    "dependencies": {        
+        "ws": "1.1.1"
+    }
+}
