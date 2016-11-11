@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="learn javascript by www.liaoxuefeng.com">
+    <title>Vue</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <script src="/static/js/jquery-1.11.2.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <script>
+        // MVVM初始化在页面加载完毕后执行
+        $(function () {
+            var vm = new Vue({
+                // el指定要把Model绑定到哪个DOM根节点上，在该节点及该节点内部，就是Vue可以操作的View
+                // Vue可以自动把Model的状态映射到View上，但是不能操作View范围之外的其他DOM节点
+                el: '#vm',  
+                // JavaScript对象作为Model
+                data: {
+                    email: '',
+                    password: '',
+                    birth: '',
+                    gender: 's',
+                    language: ['zh'],
+                    city: 'bj',
+                    introduction: '',
+                    subscribe: true
+                },
+                methods: {
+                    register: function () {
+                        // 显示JSON格式的Model:                               
+                        alert(JSON.stringify(this.$data));        
+                        // TODO: post JSON data to server...
+                    }
+                }
+            });
+            // Vue作为MVVM框架会自动监听Model的任何变化
+            // 在Model数据变化时，更新View的显示。这种Model到View的绑定为单向绑定
+            window.vm = vm;
+        });
+        function executeJs() {
+            try {
+                var code = $('#code').val();
+                var fn = new Function('var vm = window.vm;\n' + code);
+                fn();
+            } catch (e) {}
+            return false;
+        }
+    </script>
+</head>
+
+<body>    
+     <header class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="/" class="navbar-brand">LearnNode</a>
+            </div>
+            <nav class="collapse navbar-collapse" id="bs-navbar">
+                <ul class="nav navbar-nav">
+                    <li><a target="_blank" href="http://nodejs.cn">Get Courses</a></li>
+                    <li><a target="_blank" href="https://github.com/wuln/learnNode">Source Code</a></li>
+                    <li><a target="_blank" href="http://getbootstrap.com/">Resource</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="important" style="color:#cdbfe3; background-color:#6f5499; padding:30px 0; margin:-20px 0 20px 0;">
+        <div class="container">
+            <h1 style="color:#fff; font-size:60px">Getting started</h1>
+            <p style="font-size:24px; line-height:48px">Learn Node.js, npm, koa2, nunjucks, babel, etc.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-th-list"></span> MVVM</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="vm">
+                            <h3>Register Vue Course</h3>
+                            <form name="register" action="#" v-on:submit.prevent="register">
+                                <div class="form-group">
+                                    <label>Email address:</label>
+                                    <input type="email" v-model="email" class="form-control" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password:</label>
+                                    <input type="password" v-model="password" class="form-control" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <label>Birth:</label>
+                                    <input type="date" v-model="birth" class="form-control" placeholder="Birth">
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender:</label>
+                                    <div class="radio">
+                                        <label><input type="radio" name="gender" value="m" v-model="gender"> Male</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="gender" value="f" v-model="gender"> Female</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label><input type="radio" name="gender" value="s" v-model="gender"> Keep Secret</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Language:</label>
+                                    <div>
+                                        <label class="checkbox-inline"><input type="checkbox" v-model="language" value="zh"> Chinese</label>
+                                        <label class="checkbox-inline"><input type="checkbox" v-model="language" value="en"> English</label>
+                                        <label class="checkbox-inline"><input type="checkbox" v-model="language" value="fr"> French</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>City:</label>
+                                    <select v-model="city" class="form-control">
+                                        <option value="bj">Beijing</option>
+                                        <option value="sh">Shanghai</option>
+                                        <option value="gz">Guangzhou</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Introduce Yourself:</label>
+                                    <textarea v-model="introduction" class="form-control" rows="3" style="resize: none;" placeholder="Your background, interests, etc."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subscribe:</label>
+                                    <div>
+                                        <label class="checkbox-inline"><input type="checkbox" v-model="subscribe"> Send me information of new courses</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </form>
+                        </div>                                                           
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><span class="glyphicon glyphicon-eye-open"></span> Model</h3>
+                    </div>
+                    <div class="panel-body">
+                         <h3>Try change the name or age</h3>
+                        <form action="#" onsubmit="return executeJs()">
+                            <div class="form-group">
+                                <textarea id="code" class="form-control" style="font-family: Menlo,Monaco,Consolas,'Courier New',monospace; resize:none;" rows="5">vm.email = 'bob@example.com';
+vm.birth = '1990-01-21';
+vm.gender = 'f';
+                                </textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Execute</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>             
+    </div>
+
+     <footer style="background-color:#ddd; padding: 20px 0;">
+        <div class="container">
+            <p>
+                <a target="_blank" href="http://nodejs.cn">NodeJs</a> - 
+                <a target="_blank" href="https://github.com/wuln/learnNode">GitHub</a> - 
+                <a target="_blank" href="http://getbootstrap.com">bootstrap</a>
+            </p>          
+        </div>
+    </footer>
+</body>
+
+</html>
