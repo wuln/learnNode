@@ -1,10 +1,10 @@
 'use strict';
 
-import { readFile } from "fs";
+var fs = require('fs');
 
 console.log('>>>Begin>>>');
 
-readFile('test.txt', 'utf-8', function(err, data){
+fs.readFile('test.txt', 'utf-8', function(err, data){
     if (err) throw err;
     console.log(data);
 });
